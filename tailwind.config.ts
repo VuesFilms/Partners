@@ -35,8 +35,8 @@ export default {
         night: '#0A1118',
       },
       fontFamily: {
-        sans: ['Inter', '"IBM Plex Sans Arabic"', 'system-ui', 'sans-serif'],
-        arabic: ['"IBM Plex Sans Arabic"', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['"DG Heaven"', 'Inter', '"IBM Plex Sans Arabic"', 'system-ui', 'sans-serif'],
+        arabic: ['"DG Heaven"', '"IBM Plex Sans Arabic"', 'Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: { xl: '0.875rem', '2xl': '1.125rem', '3xl': '1.5rem' },
       boxShadow: {

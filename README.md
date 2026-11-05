@@ -94,7 +94,7 @@ To change colours:
 
 To change direction completely, put new images in `design-references/` (name palette images with "palette" in the file name) and adjust the tokens above to match.
 
-Fonts are **Inter** (English) and **IBM Plex Sans Arabic** (Arabic), loaded from Google Fonts in `index.html`. The font switches automatically with the language.
+The brand typeface is **DG Heaven** (Thin, Light, Regular, Bold) for both Arabic and English, bundled from `src/assets/fonts/` and declared with `@font-face` at the top of `src/index.css`. Inter and IBM Plex Sans Arabic (Google Fonts, in `index.html`) are fallbacks for the few symbols DG Heaven lacks (– ≈ ² …). To swap fonts, replace the files and update the `@font-face` rules and `fontFamily` in `tailwind.config.ts`.
 
 ## Deploy to Vercel
 
