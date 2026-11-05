@@ -44,7 +44,7 @@ export function FranchiseCard({ f, isNew }: { f: Franchise; isNew?: boolean }) {
         <div className="flex items-center gap-2">
           <Globe2 className="h-4 w-4 shrink-0 text-muted" />
           <dt className="sr-only">{t('origin')}</dt>
-          <dd>{tr(countries[f.origin])}</dd>
+          <dd>{tr(cities[f.originCity])}, {tr(countries[cities[f.originCity].country])}</dd>
         </div>
         <div className="flex items-center gap-2">
           <Store className="h-4 w-4 shrink-0 text-muted" />

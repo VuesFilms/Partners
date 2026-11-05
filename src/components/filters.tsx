@@ -1,7 +1,7 @@
 import { ChevronDown, Search, X } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useApp } from '../context/AppContext';
-import { cities, cityIds, regionIds, regions, type CityId, type L, type RegionId } from '../i18n/dictionary';
+import { cities, saudiCityIds, regionIds, regions, type CityId, type L, type RegionId } from '../i18n/dictionary';
 
 export function FilterSection({ title, children, aside }: { title: string; children: ReactNode; aside?: ReactNode }) {
   return (
@@ -159,7 +159,7 @@ export function LocationSelect({ value, onChange, label }: { value: LocationValu
             <option value={`region:${r}`}>
               {t('allRegion')} {tr(regions[r])}
             </option>
-            {cityIds
+            {saudiCityIds
               .filter((id) => cities[id].region === r)
               .map((id) => (
                 <option key={id} value={`city:${id}`}>

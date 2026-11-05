@@ -23,7 +23,8 @@ export function InterestModal({ open, onClose, kind, targetId, targetName }: Pro
   const [status, setStatus] = useState<'idle' | 'sending' | 'done'>('idle');
   const messageEdited = useRef(false);
 
-  const template = () => fill((kind === 'franchise' ? ui.templateToFranchise : ui.templateToInvestor)[lang], { name: tr(targetName) });
+  const tpl = kind === 'franchise' ? ui.templateToFranchise : kind === 'investor' ? ui.templateToInvestor : ui.templateToMarket;
+  const template = () => fill(tpl[lang], { name: tr(targetName) });
 
   // Reset every time the modal opens
   useEffect(() => {
@@ -69,7 +70,10 @@ export function InterestModal({ open, onClose, kind, targetId, targetName }: Pro
   };
 
   const isFr = kind === 'franchise';
-  const title = status === 'done' ? t('successTitle') : `${isFr ? t('modalTitleFranchise') : t('modalTitleInvestor')} ${tr(targetName)}`;
+  const isMarket = kind === 'market';
+  const titlePrefix = isFr ? t('modalTitleFranchise') : isMarket ? t('modalTitleMarket') : t('modalTitleInvestor');
+  const title = status === 'done' ? t('successTitle') : `${titlePrefix} ${tr(targetName)}`;
+  const successBody = isFr ? ui.successBodyFranchise : isMarket ? ui.successBodyMarket : ui.successBodyInvestor;
 
   const field = (k: keyof Fields, label: string, opts: { type?: string; placeholder?: string; optional?: boolean; ltr?: boolean; autoComplete?: string; inputMode?: 'email' | 'tel' | 'text' } = {}) => (
     <div>
@@ -140,15 +144,15 @@ export function InterestModal({ open, onClose, kind, targetId, targetName }: Pro
               <CheckCircle2 className="h-8 w-8" />
             </motion.span>
             <p className="mt-5 max-w-sm text-[15px] leading-relaxed">
-              {fill((isFr ? ui.successBodyFranchise : ui.successBodyInvestor)[lang], { name: tr(targetName) })}
+              {fill(successBody[lang], { name: tr(targetName) })}
             </p>
             <p className="mt-4 rounded-xl bg-surface-2 px-4 py-3 text-sm text-muted">{t('demoNoEmail')}</p>
           </motion.div>
         ) : (
           <motion.form key="form" id="interest-form" noValidate onSubmit={submit} exit={{ opacity: 0 }} className="grid gap-4 pt-1">
             <div className="grid gap-4 sm:grid-cols-2">
-              {field('name', t('fullName'), { placeholder: isFr ? t('phNameFr') : t('phNameInv'), autoComplete: 'name' })}
-              {field('company', t('company'), { placeholder: isFr ? t('phCompanyFr') : t('phCompanyInv'), optional: true, autoComplete: 'organization' })}
+              {field('name', t('fullName'), { placeholder: isFr || isMarket ? t('phNameFr') : t('phNameInv'), autoComplete: 'name' })}
+              {field('company', t('company'), { placeholder: isFr ? t('phCompanyFr') : isMarket ? t('phCompanyMarket') : t('phCompanyInv'), optional: true, autoComplete: 'organization' })}
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               {field('email', t('email'), { type: 'email', placeholder: t('phEmail'), ltr: true, autoComplete: 'email', inputMode: 'email' })}

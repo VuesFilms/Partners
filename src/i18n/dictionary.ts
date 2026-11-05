@@ -208,6 +208,52 @@ export const ui = {
     en: 'Hello {name},\n\nWe believe our franchise could be a strong fit for your investment focus and would welcome the chance to share our expansion plan and unit economics with you.\n\nKind regards.',
     ar: 'مرحبًا {name}،\n\nنعتقد أن امتيازنا يتوافق مع تركيزكم الاستثماري، ويسعدنا أن نعرض عليكم خطة التوسع واقتصاديات الوحدة.\n\nمع خالص التحية.',
   },
+
+  // Globe
+  globeHeadlineInv: { en: 'Franchise brands from around the world', ar: 'علامات امتياز من حول العالم' },
+  globeTextInv: { en: 'Each pin is a brand’s home city. All of them are expanding in Saudi Arabia.', ar: 'كل دبوس هو مدينة منشأ علامة، وجميعها تتوسع في السعودية.' },
+  globeHeadlineFr: { en: 'Investors ready to back your brand', ar: 'مستثمرون مستعدون لدعم علامتك' },
+  globeTextFr: { en: 'Each pin is an investor’s base city across the Kingdom.', ar: 'كل دبوس هو مدينة مقر مستثمر في أنحاء المملكة.' },
+  browseAll: { en: 'Browse all', ar: 'عرض الكل' },
+  globeView: { en: 'Globe view', ar: 'عرض الكرة الأرضية' },
+  skip: { en: 'Skip', ar: 'تخطٍّ' },
+  dragToRotate: { en: 'Drag to rotate', ar: 'اسحب للتدوير' },
+  resumeTour: { en: 'Resume tour', ar: 'استئناف الجولة' },
+  touring: { en: 'Touring cities…', ar: 'جولة بين المدن…' },
+  statCities: { en: 'cities', ar: 'مدينة' },
+  statBrandsShort: { en: 'brands', ar: 'علامة' },
+  statInvestorsShort: { en: 'investors', ar: 'مستثمر' },
+  statCapitalShort: { en: 'capital available', ar: 'رأس مال متاح' },
+  brandsHere: { en: 'franchise brands', ar: 'علامة امتياز' },
+  brandHere: { en: 'franchise brand', ar: 'علامة امتياز' },
+  investorsHere: { en: 'investors', ar: 'مستثمرين' },
+  investorHere: { en: 'investor', ar: 'مستثمر' },
+  fromThisCountry: { en: 'Opportunities from this country', ar: 'الفرص من هذه الدولة' },
+  basedInThisCountry: { en: 'Investors based in this country', ar: 'مستثمرون مقيمون في هذه الدولة' },
+  noListings: {
+    en: 'There are no listings from this market yet. Tell us what you are looking for and we will reach out to brands and investors there.',
+    ar: 'لا توجد فرص مدرجة من هذا السوق بعد. أخبرنا بما تبحث عنه وسنتواصل مع العلامات والمستثمرين هناك.',
+  },
+  requestMarket: { en: 'Request opportunities from this market', ar: 'اطلب فرصًا من هذا السوق' },
+  oceanHint: {
+    en: 'Click a pin to see the opportunities in that city, or click any country to explore its market.',
+    ar: 'اضغط على دبوس لعرض الفرص في تلك المدينة، أو اضغط على أي دولة لاستكشاف سوقها.',
+  },
+  oceanTitle: { en: 'Explore the map', ar: 'استكشف الخريطة' },
+  viewFullProfile: { en: 'View full profile', ar: 'عرض الملف الكامل' },
+  showDetails: { en: 'Show details', ar: 'عرض التفاصيل' },
+  hideDetails: { en: 'Hide details', ar: 'إخفاء التفاصيل' },
+  globeLabel: { en: 'Interactive globe of opportunities', ar: 'كرة أرضية تفاعلية للفرص' },
+  modalTitleMarket: { en: 'Request opportunities from', ar: 'اطلب فرصًا من' },
+  phCompanyMarket: { en: 'e.g. Your company', ar: 'مثال: اسم شركتك' },
+  templateToMarket: {
+    en: 'Hello Partners team,\n\nI’m interested in franchise opportunities from {name}. Please let me know when brands or investors from this market join the platform.\n\nThank you.',
+    ar: 'مرحبًا فريق شركاء،\n\nأنا مهتم بفرص الامتياز من {name}. يرجى إبلاغي عند انضمام علامات أو مستثمرين من هذا السوق إلى المنصة.\n\nشكرًا لكم.',
+  },
+  successBodyMarket: {
+    en: 'Your request for opportunities from {name} has been noted. In the live platform our team would follow up within 2 business days.',
+    ar: 'تم تسجيل طلبك للفرص من {name}. في المنصة الفعلية سيتابع فريقنا معك خلال يومي عمل.',
+  },
 } satisfies Record<string, L>;
 
 export type UiKey = keyof typeof ui;
@@ -230,6 +276,10 @@ export const sectorIds = Object.keys(sectors) as SectorId[];
 /** Brand countries of origin (where a franchise brand was founded). */
 export const countries = {
   SA: { en: 'Saudi Arabia', ar: 'السعودية' },
+  AE: { en: 'UAE', ar: 'الإمارات' },
+  KW: { en: 'Kuwait', ar: 'الكويت' },
+  TR: { en: 'Türkiye', ar: 'تركيا' },
+  BR: { en: 'Brazil', ar: 'البرازيل' },
   US: { en: 'United States', ar: 'الولايات المتحدة' },
   GB: { en: 'United Kingdom', ar: 'المملكة المتحدة' },
   IT: { en: 'Italy', ar: 'إيطاليا' },
@@ -252,22 +302,55 @@ export const regions = {
 export type RegionId = keyof typeof regions;
 export const regionIds = Object.keys(regions) as RegionId[];
 
-/** Saudi cities only. */
-export const cities = {
-  riyadh: { en: 'Riyadh', ar: 'الرياض', region: 'central' },
-  buraidah: { en: 'Buraidah', ar: 'بريدة', region: 'central' },
-  jeddah: { en: 'Jeddah', ar: 'جدة', region: 'western' },
-  makkah: { en: 'Makkah', ar: 'مكة المكرمة', region: 'western' },
-  madinah: { en: 'Madinah', ar: 'المدينة المنورة', region: 'western' },
-  taif: { en: 'Taif', ar: 'الطائف', region: 'western' },
-  dammam: { en: 'Dammam', ar: 'الدمام', region: 'eastern' },
-  khobar: { en: 'Al Khobar', ar: 'الخبر', region: 'eastern' },
-  ahsa: { en: 'Al Ahsa', ar: 'الأحساء', region: 'eastern' },
-  abha: { en: 'Abha', ar: 'أبها', region: 'southern' },
-  tabuk: { en: 'Tabuk', ar: 'تبوك', region: 'northern' },
-} satisfies Record<string, L & { region: RegionId }>;
-export type CityId = keyof typeof cities;
+export interface CityInfo extends L {
+  /** ISO 3166-1 alpha-2 country code */
+  country: CountryId;
+  lat: number;
+  lon: number;
+  /** Saudi region. Only cities with a region are Saudi target/base cities and appear in the location filter. */
+  region?: RegionId;
+}
+
+/**
+ * Every city used in the sample data. Coordinates place the pins on the globe:
+ * add a city here, use it in the data, and its pin appears automatically.
+ */
+const cityData = {
+  // Saudi Arabia: target expansion and investor base cities
+  riyadh: { en: 'Riyadh', ar: 'الرياض', country: 'SA', lat: 24.71, lon: 46.68, region: 'central' },
+  buraidah: { en: 'Buraidah', ar: 'بريدة', country: 'SA', lat: 26.33, lon: 43.97, region: 'central' },
+  jeddah: { en: 'Jeddah', ar: 'جدة', country: 'SA', lat: 21.49, lon: 39.19, region: 'western' },
+  makkah: { en: 'Makkah', ar: 'مكة المكرمة', country: 'SA', lat: 21.39, lon: 39.86, region: 'western' },
+  madinah: { en: 'Madinah', ar: 'المدينة المنورة', country: 'SA', lat: 24.47, lon: 39.61, region: 'western' },
+  taif: { en: 'Taif', ar: 'الطائف', country: 'SA', lat: 21.27, lon: 40.42, region: 'western' },
+  dammam: { en: 'Dammam', ar: 'الدمام', country: 'SA', lat: 26.43, lon: 50.1, region: 'eastern' },
+  khobar: { en: 'Al Khobar', ar: 'الخبر', country: 'SA', lat: 26.28, lon: 50.21, region: 'eastern' },
+  ahsa: { en: 'Al Ahsa', ar: 'الأحساء', country: 'SA', lat: 25.38, lon: 49.59, region: 'eastern' },
+  abha: { en: 'Abha', ar: 'أبها', country: 'SA', lat: 18.22, lon: 42.51, region: 'southern' },
+  tabuk: { en: 'Tabuk', ar: 'تبوك', country: 'SA', lat: 28.38, lon: 36.57, region: 'northern' },
+  // Brand origin cities around the world
+  dubai: { en: 'Dubai', ar: 'دبي', country: 'AE', lat: 25.2, lon: 55.27 },
+  kuwait: { en: 'Kuwait City', ar: 'مدينة الكويت', country: 'KW', lat: 29.38, lon: 47.99 },
+  istanbul: { en: 'Istanbul', ar: 'إسطنبول', country: 'TR', lat: 41.01, lon: 28.98 },
+  paris: { en: 'Paris', ar: 'باريس', country: 'FR', lat: 48.86, lon: 2.35 },
+  london: { en: 'London', ar: 'لندن', country: 'GB', lat: 51.51, lon: -0.13 },
+  milan: { en: 'Milan', ar: 'ميلانو', country: 'IT', lat: 45.46, lon: 9.19 },
+  newyork: { en: 'New York', ar: 'نيويورك', country: 'US', lat: 40.71, lon: -74.01 },
+  saopaulo: { en: 'São Paulo', ar: 'ساو باولو', country: 'BR', lat: -23.55, lon: -46.63 },
+  tokyo: { en: 'Tokyo', ar: 'طوكيو', country: 'JP', lat: 35.68, lon: 139.69 },
+  seoul: { en: 'Seoul', ar: 'سيول', country: 'KR', lat: 37.57, lon: 126.98 },
+  sydney: { en: 'Sydney', ar: 'سيدني', country: 'AU', lat: -33.87, lon: 151.21 },
+} satisfies Record<string, CityInfo>;
+export type CityId = keyof typeof cityData;
+export const cities: Record<CityId, CityInfo> = cityData;
 export const cityIds = Object.keys(cities) as CityId[];
+/** Region for Saudi cities, country for the rest. */
+export const cityArea = (id: CityId): L => {
+  const c = cities[id];
+  return c.region ? regions[c.region] : countries[c.country];
+};
+/** Saudi cities (used for target expansion, investor bases and the location filter). */
+export const saudiCityIds = cityIds.filter((id) => cities[id].region);
 
 export const investorTypes = {
   individual: { en: 'Individual', ar: 'فرد' },

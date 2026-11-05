@@ -3,7 +3,8 @@ import { ui, type L, type Lang, type UiKey } from '../i18n/dictionary';
 import { KEYS, readJSON, writeJSON } from '../lib/storage';
 
 export type Theme = 'light' | 'dark';
-export type InterestKind = 'franchise' | 'investor';
+/** franchise / investor = interest in a listing; market = request for listings from a country */
+export type InterestKind = 'franchise' | 'investor' | 'market';
 
 export interface InterestRequest {
   kind: InterestKind;

@@ -8,7 +8,7 @@ import { InterestModal } from '../components/InterestModal';
 import { Monogram } from '../components/Monogram';
 import { useApp } from '../context/AppContext';
 import { getInvestor } from '../data/investors';
-import { cities, dealStructures, investorTypes, regions, sectors, type DealStructureId } from '../i18n/dictionary';
+import { cities, dealStructures, investorTypes, cityArea, sectors, type DealStructureId } from '../i18n/dictionary';
 import { formatMoneyRangeFull, formatSARRange, formatUSDRange } from '../lib/currency';
 import { investorGradient, investorTypeIcon, sectorIcon } from '../lib/icons';
 import NotFound from './NotFound';
@@ -44,7 +44,7 @@ export default function InvestorDetail() {
                 <TypeIcon className="h-3.5 w-3.5" /> {tr(investorTypes[inv.type])}
               </span>
               <span className="glass inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium">
-                <MapPin className="h-3.5 w-3.5" /> {tr(cities[inv.city])}, {tr(regions[cities[inv.city].region])}
+                <MapPin className="h-3.5 w-3.5" /> {tr(cities[inv.city])}, {tr(cityArea(inv.city))}
               </span>
               {sent && <InterestBadge />}
             </div>
@@ -113,7 +113,7 @@ export default function InvestorDetail() {
                 <li key={c} className="chip min-h-[40px] bg-surface-2">
                   <MapPin className="h-3.5 w-3.5 text-secondary-ink" />
                   {tr(cities[c])}
-                  <span className="text-muted">· {tr(regions[cities[c].region])}</span>
+                  <span className="text-muted">· {tr(cityArea(c))}</span>
                 </li>
               ))}
             </ul>

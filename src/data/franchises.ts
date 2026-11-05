@@ -1,4 +1,4 @@
-import type { CityId, CountryId, L, ProvisionId, SectorId } from '../i18n/dictionary';
+import { cities, type CityId, type L, type ProvisionId, type SectorId } from '../i18n/dictionary';
 
 /**
  * Fictional franchise brands. All names, numbers and descriptions are invented
@@ -11,7 +11,8 @@ export interface Franchise {
   overview: L;
   format: L;
   sector: SectorId;
-  origin: CountryId;
+  /** City where the brand was founded. Its coordinates place the brand's pin on the globe. */
+  originCity: CityId;
   founded: number;
   branchesTotal: number;
   /** branches already open in Saudi Arabia */
@@ -40,7 +41,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Kiosk & drive-thru', ar: 'كشك وطلب من السيارة' },
     sector: 'coffee',
-    origin: 'SA',
+    originCity: 'riyadh',
     founded: 2017,
     branchesTotal: 46,
     branchesKsa: 46,
@@ -65,7 +66,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Café with seating', ar: 'مقهى بجلسات' },
     sector: 'coffee',
-    origin: 'AU',
+    originCity: 'sydney',
     founded: 2011,
     branchesTotal: 128,
     branchesKsa: 4,
@@ -90,7 +91,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Fast-casual restaurant', ar: 'مطعم وجبات سريعة عصري' },
     sector: 'fnb',
-    origin: 'SA',
+    originCity: 'riyadh',
     founded: 2015,
     branchesTotal: 31,
     branchesKsa: 31,
@@ -110,12 +111,12 @@ export const franchises: Franchise[] = [
     name: { en: 'Trattoria Verdello', ar: 'تراتوريا فيرديلو' },
     tagline: { en: 'Family-style Italian dining with fresh pasta made in house.', ar: 'مطعم إيطالي عائلي بمعكرونة طازجة تُحضَّر يوميًا.' },
     overview: {
-      en: 'Founded in Bologna, Trattoria Verdello is a full-service Italian restaurant built around a visible pasta lab and wood-fired oven. The brand targets premium malls and waterfront destinations and suits experienced hospitality operators.',
-      ar: 'تأسست تراتوريا فيرديلو في بولونيا، وهي مطعم إيطالي متكامل الخدمة يتمحور حول ركن مكشوف لتحضير المعكرونة وفرن حطب. تستهدف العلامة المراكز التجارية الراقية والوجهات البحرية، وتناسب المشغّلين ذوي الخبرة في الضيافة.',
+      en: 'Founded in Milan, Trattoria Verdello is a full-service Italian restaurant built around a visible pasta lab and wood-fired oven. The brand targets premium malls and waterfront destinations and suits experienced hospitality operators.',
+      ar: 'تأسست تراتوريا فيرديلو في ميلانو، وهي مطعم إيطالي متكامل الخدمة يتمحور حول ركن مكشوف لتحضير المعكرونة وفرن حطب. تستهدف العلامة المراكز التجارية الراقية والوجهات البحرية، وتناسب المشغّلين ذوي الخبرة في الضيافة.',
     },
     format: { en: 'Full-service restaurant', ar: 'مطعم متكامل الخدمة' },
     sector: 'fnb',
-    origin: 'IT',
+    originCity: 'milan',
     founded: 2004,
     branchesTotal: 74,
     branchesKsa: 2,
@@ -140,7 +141,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Master franchise · Saudi Arabia', ar: 'امتياز رئيسي · السعودية' },
     sector: 'fnb',
-    origin: 'JP',
+    originCity: 'tokyo',
     founded: 2009,
     branchesTotal: 212,
     branchesKsa: 0,
@@ -165,7 +166,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Boutique studio', ar: 'استوديو متخصص' },
     sector: 'fitness',
-    origin: 'US',
+    originCity: 'newyork',
     founded: 2014,
     branchesTotal: 310,
     branchesKsa: 5,
@@ -190,7 +191,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Full fitness club', ar: 'نادٍ رياضي متكامل' },
     sector: 'fitness',
-    origin: 'SA',
+    originCity: 'riyadh',
     founded: 2018,
     branchesTotal: 14,
     branchesKsa: 14,
@@ -215,7 +216,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Nursery (80–140 children)', ar: 'حضانة (80–140 طفلًا)' },
     sector: 'education',
-    origin: 'GB',
+    originCity: 'london',
     founded: 2008,
     branchesTotal: 96,
     branchesKsa: 4,
@@ -240,7 +241,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Learning centre', ar: 'مركز تعليمي' },
     sector: 'education',
-    origin: 'SA',
+    originCity: 'dubai',
     founded: 2019,
     branchesTotal: 22,
     branchesKsa: 22,
@@ -265,7 +266,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Boutique & mall kiosk', ar: 'متجر وكشك داخل المول' },
     sector: 'retail',
-    origin: 'SA',
+    originCity: 'jeddah',
     founded: 2013,
     branchesTotal: 58,
     branchesKsa: 52,
@@ -290,7 +291,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Mall bar', ar: 'ركن داخل المول' },
     sector: 'beauty',
-    origin: 'GB',
+    originCity: 'london',
     founded: 2012,
     branchesTotal: 140,
     branchesKsa: 7,
@@ -315,7 +316,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Day spa', ar: 'منتجع نهاري' },
     sector: 'beauty',
-    origin: 'FR',
+    originCity: 'paris',
     founded: 2006,
     branchesTotal: 38,
     branchesKsa: 1,
@@ -340,7 +341,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Outpatient clinic', ar: 'عيادة خارجية' },
     sector: 'healthcare',
-    origin: 'SA',
+    originCity: 'kuwait',
     founded: 2016,
     branchesTotal: 19,
     branchesKsa: 19,
@@ -365,7 +366,7 @@ export const franchises: Franchise[] = [
     },
     format: { en: 'Plant + storefronts', ar: 'مصنع مع واجهات بيع' },
     sector: 'services',
-    origin: 'KR',
+    originCity: 'seoul',
     founded: 2015,
     branchesTotal: 260,
     branchesKsa: 3,
@@ -380,6 +381,59 @@ export const franchises: Franchise[] = [
     targetCities: ['riyadh', 'jeddah', 'dammam', 'khobar'],
     listedAt: '2026-10-15',
   },
+  {
+    id: 'lokumhane',
+    name: { en: 'Lokumhane Dessert Café', ar: 'لوكومهانه للحلويات' },
+    tagline: { en: 'Istanbul dessert house serving Turkish coffee, baklava and lokum.', ar: 'بيت حلويات من إسطنبول يقدّم القهوة التركية والبقلاوة والملبن.' },
+    overview: {
+      en: 'Lokumhane is an Istanbul dessert café known for baklava baked daily, house-made lokum and Turkish coffee brewed on hot sand. Its warm, tiled interiors work in malls and high streets, and boxed sweets drive strong gifting sales during Ramadan and Eid.',
+      ar: 'لوكومهانه مقهى حلويات من إسطنبول يشتهر بالبقلاوة المخبوزة يوميًا والملبن المصنوع داخليًا والقهوة التركية المحضّرة على الرمل الساخن. تناسب تصاميمه الدافئة المزيّنة بالبلاط المراكز التجارية والشوارع الرئيسية، وتحقق علب الحلويات مبيعات إهداء قوية في رمضان والأعياد.',
+    },
+    format: { en: 'Dessert café', ar: 'مقهى حلويات' },
+    sector: 'coffee',
+    originCity: 'istanbul',
+    founded: 2010,
+    branchesTotal: 64,
+    branchesKsa: 0,
+    investmentMin: 900_000,
+    investmentMax: 1_600_000,
+    franchiseFee: 110_000,
+    royaltyPct: 6,
+    marketingPct: 2,
+    paybackMonths: [22, 30],
+    unitSizeSqm: [80, 160],
+    provides: ['training', 'supply', 'marketing', 'site', 'fitout'],
+    targetCities: ['riyadh', 'jeddah', 'khobar', 'madinah'],
+    listedAt: '2026-11-02',
+  },
+  {
+    id: 'bahia-bowl',
+    name: { en: 'Bahia Bowl Co.', ar: 'باهيا بول' },
+    tagline: { en: 'Brazilian açaí bowls and smoothies from compact kiosks.', ar: 'أطباق الأساي البرازيلية والعصائر من أكشاك صغيرة.' },
+    overview: {
+      en: 'Bahia Bowl Co. started on the beaches of Brazil and now serves açaí bowls, fresh smoothies and protein snacks from compact kiosks near gyms, universities and malls. A short menu and frozen açaí supplied by the franchisor keep training and staffing simple.',
+      ar: 'بدأت باهيا بول على شواطئ البرازيل، وتقدّم اليوم أطباق الأساي والعصائر الطازجة والوجبات الخفيفة الغنية بالبروتين من أكشاك صغيرة قرب النوادي الرياضية والجامعات والمراكز التجارية. قائمة قصيرة وأساي مجمّد يوفّره مانح الامتياز يجعلان التدريب والتوظيف بسيطين.',
+    },
+    format: { en: 'Kiosk', ar: 'كشك' },
+    sector: 'fnb',
+    originCity: 'saopaulo',
+    founded: 2013,
+    branchesTotal: 180,
+    branchesKsa: 0,
+    investmentMin: 350_000,
+    investmentMax: 700_000,
+    franchiseFee: 70_000,
+    royaltyPct: 6,
+    marketingPct: 2,
+    paybackMonths: [14, 22],
+    unitSizeSqm: [15, 60],
+    provides: ['training', 'supply', 'marketing', 'site'],
+    targetCities: ['riyadh', 'jeddah', 'dammam', 'khobar', 'abha'],
+    listedAt: '2026-11-04',
+  },
 ];
 
 export const getFranchise = (id: string) => franchises.find((f) => f.id === id);
+
+/** Country a brand comes from (derived from its origin city). */
+export const originCountry = (f: Franchise) => cities[f.originCity].country;

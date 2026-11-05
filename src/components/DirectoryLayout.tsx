@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { SearchX, SlidersHorizontal } from 'lucide-react';
-import { forwardRef, useState, type ReactNode } from 'react';
+import { Globe2, SearchX, SlidersHorizontal } from 'lucide-react';
+import { forwardRef, useEffect, useState, type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { Overlay } from './Overlay';
 import { StatsStrip } from './StatsStrip';
@@ -10,6 +11,8 @@ interface Props<F> {
   icon: ReactNode;
   title: string;
   subtitle: string;
+  /** route of the matching globe view */
+  globeTo: string;
   search: ReactNode;
   sort: ReactNode;
   filters: F;
@@ -26,18 +29,8 @@ interface Props<F> {
 export function DirectoryLayout<F>(p: Props<F>) {
   const { t } = useApp();
   const [sheetOpen, setSheetOpen] = useState(false);
-  const [draft, setDraft] = useState<F>(p.filters);
   const active = p.activeCount(p.filters);
-
-  const openSheet = () => {
-    setDraft(p.filters);
-    setSheetOpen(true);
-  };
-  const apply = () => {
-    p.setFilters(draft);
-    setSheetOpen(false);
-  };
-  const draftCount = p.countFor(draft);
+  const openSheet = () => setSheetOpen(true);
 
   return (
     <div className="container-x pt-4 sm:pt-6">
@@ -88,6 +81,10 @@ export function DirectoryLayout<F>(p: Props<F>) {
               <p className="hidden flex-1 text-sm text-muted sm:block">
                 <span className="font-semibold text-text tabular">{p.resultCount}</span> {p.resultCount === 1 ? t('result') : t('results')}
               </p>
+              <Link to={p.globeTo} className="btn-outline shrink-0 bg-surface px-3 sm:px-4" aria-label={t('globeView')} title={t('globeView')}>
+                <Globe2 className="h-4 w-4" />
+                <span className="hidden sm:inline">{t('globeView')}</span>
+              </Link>
               <div className="ms-auto w-full min-w-0 max-w-[260px] flex-1 sm:flex-none">{p.sort}</div>
             </div>
             <p className="text-sm text-muted sm:hidden">
@@ -119,25 +116,70 @@ export function DirectoryLayout<F>(p: Props<F>) {
       </div>
 
       {/* Mobile / tablet filter sheet */}
-      <Overlay
+      <FilterSheet<F>
         open={sheetOpen}
         onClose={() => setSheetOpen(false)}
-        title={t('filters')}
-        variant="sheet"
-        footer={
-          <div className="flex gap-3">
-            <button type="button" className="btn-outline flex-1" onClick={() => setDraft(p.defaults)}>
-              {t('reset')}
-            </button>
-            <button type="button" className="btn-primary flex-[2]" onClick={apply}>
-              {t('apply')} · <span className="tabular">{draftCount}</span> {draftCount === 1 ? t('result') : t('results')}
-            </button>
-          </div>
-        }
-      >
-        {p.renderFilters(draft, setDraft)}
-      </Overlay>
+        value={p.filters}
+        defaults={p.defaults}
+        countFor={p.countFor}
+        renderFilters={p.renderFilters}
+        onApply={p.setFilters}
+      />
     </div>
+  );
+}
+
+/** Slide-up filter panel with a draft state and an Apply button (also used by the globe). */
+export function FilterSheet<F>({
+  open,
+  onClose,
+  value,
+  defaults,
+  countFor,
+  renderFilters,
+  onApply,
+}: {
+  open: boolean;
+  onClose: () => void;
+  value: F;
+  defaults: F;
+  countFor: (f: F) => number;
+  renderFilters: (value: F, set: (f: F) => void) => ReactNode;
+  onApply: (f: F) => void;
+}) {
+  const { t } = useApp();
+  const [draft, setDraft] = useState<F>(value);
+  useEffect(() => {
+    if (open) setDraft(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+  const draftCount = countFor(draft);
+  return (
+    <Overlay
+      open={open}
+      onClose={onClose}
+      title={t('filters')}
+      variant="sheet"
+      footer={
+        <div className="flex gap-3">
+          <button type="button" className="btn-outline flex-1" onClick={() => setDraft(defaults)}>
+            {t('reset')}
+          </button>
+          <button
+            type="button"
+            className="btn-primary flex-[2]"
+            onClick={() => {
+              onApply(draft);
+              onClose();
+            }}
+          >
+            {t('apply')} · <span className="tabular">{draftCount}</span> {draftCount === 1 ? t('result') : t('results')}
+          </button>
+        </div>
+      }
+    >
+      {renderFilters(draft, setDraft)}
+    </Overlay>
   );
 }
 

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Handshake, Search, SlidersHorizontal, Store, TrendingUp, type LucideIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useState, type MouseEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { StatsStrip } from '../components/StatsStrip';
 import { useApp } from '../context/AppContext';
 import { franchises } from '../data/franchises';
@@ -17,6 +18,7 @@ function ChoiceCard({
   cta,
   meta,
   delay,
+  onOpen,
 }: {
   to: string;
   step: number;
@@ -26,11 +28,13 @@ function ChoiceCard({
   cta: string;
   meta: string;
   delay: number;
+  onOpen: (e: MouseEvent, to: string) => void;
 }) {
   return (
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease, delay }}>
       <Link
         to={to}
+        onClick={(e) => onOpen(e, to)}
         className="glass group flex h-full min-h-[240px] flex-col rounded-2xl p-6 text-white transition-[background-color,color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:bg-white hover:text-night hover:shadow-lift focus-visible:bg-white focus-visible:text-night sm:min-h-[280px] sm:p-8"
       >
         <div className="flex items-center justify-between">
@@ -57,6 +61,16 @@ function ChoiceCard({
 
 export default function Landing() {
   const { t, lang } = useApp();
+  const navigate = useNavigate();
+  const [leaving, setLeaving] = useState(false);
+  /** Choice cards fade and scale down, then the globe screen opens. */
+  const open = (e: MouseEvent, to: string) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    if (leaving) return;
+    setLeaving(true);
+    window.setTimeout(() => navigate(to), 500);
+  };
   const steps: { icon: LucideIcon; title: string }[] = [
     { icon: Search, title: t('step1') },
     { icon: SlidersHorizontal, title: t('step2') },
@@ -90,9 +104,14 @@ export default function Landing() {
           <p className="text-[15px] text-white/65 lg:max-w-xs lg:text-end">{t('chooseSide')}</p>
         </motion.div>
 
-        <div className="mt-6 grid gap-4 sm:mt-8 md:grid-cols-2">
+        <motion.div
+          className="mt-6 grid gap-4 sm:mt-8 md:grid-cols-2"
+          animate={leaving ? { opacity: 0, scale: 0.94 } : { opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, ease }}
+        >
           <ChoiceCard
-            to="/franchises"
+            to="/explore/franchises"
+            onOpen={open}
             step={1}
             icon={TrendingUp}
             title={t('imInvestor')}
@@ -102,7 +121,8 @@ export default function Landing() {
             delay={0.14}
           />
           <ChoiceCard
-            to="/investors"
+            to="/explore/investors"
+            onOpen={open}
             step={2}
             icon={Store}
             title={t('imFranchise')}
@@ -111,7 +131,7 @@ export default function Landing() {
             meta={`${investors.length} ${t('investorsActive')}`}
             delay={0.2}
           />
-        </div>
+        </motion.div>
       </section>
 
       <section className="mt-6 sm:mt-8" aria-label="Stats">

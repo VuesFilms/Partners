@@ -8,7 +8,7 @@ import { InterestModal } from '../components/InterestModal';
 import { Monogram } from '../components/Monogram';
 import { useApp } from '../context/AppContext';
 import { getFranchise } from '../data/franchises';
-import { cities, countries, provisions, regions, sectors } from '../i18n/dictionary';
+import { cities, countries, provisions, cityArea, sectors } from '../i18n/dictionary';
 import { formatMoneyRangeFull, formatSAR, formatSARRange, formatUSD, formatUSDRange } from '../lib/currency';
 import { provisionIcon, sectorGradient, sectorIcon } from '../lib/icons';
 import NotFound from './NotFound';
@@ -43,7 +43,7 @@ export default function FranchiseDetail() {
                 <SectorIcon className="h-3.5 w-3.5" /> {tr(sectors[f.sector])}
               </span>
               <span className="glass inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium">
-                <Globe2 className="h-3.5 w-3.5" /> {tr(countries[f.origin])}
+                <Globe2 className="h-3.5 w-3.5" /> {tr(cities[f.originCity])}, {tr(countries[cities[f.originCity].country])}
               </span>
               <span className="glass inline-flex items-center rounded-full px-3 py-1 text-xs font-medium">{tr(f.format)}</span>
               {sent && <InterestBadge />}
@@ -115,7 +115,7 @@ export default function FranchiseDetail() {
                 <li key={c} className="chip min-h-[40px] bg-surface-2">
                   <MapPin className="h-3.5 w-3.5 text-primary-ink" />
                   {tr(cities[c])}
-                  <span className="text-muted">· {tr(regions[cities[c].region])}</span>
+                  <span className="text-muted">· {tr(cityArea(c))}</span>
                 </li>
               ))}
             </ul>

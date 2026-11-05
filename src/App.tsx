@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import { Suspense, lazy } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
@@ -9,11 +10,15 @@ import Landing from './pages/Landing';
 import Marketplace from './pages/Marketplace';
 import NotFound from './pages/NotFound';
 
+// The globe (canvas + map data) loads only when opened, so other pages stay fast.
+const GlobeExplore = lazy(() => import('./pages/GlobeExplore'));
+
 export default function App() {
   const location = useLocation();
+  const isGlobe = location.pathname.startsWith('/explore/');
   return (
     <div className="flex min-h-[100dvh] flex-col">
-      <Header />
+      {!isGlobe && <Header />}
       <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })}>
         <motion.main
           key={location.pathname}
@@ -29,11 +34,19 @@ export default function App() {
             <Route path="/franchises/:id" element={<FranchiseDetail />} />
             <Route path="/investors" element={<InvestorDirectory />} />
             <Route path="/investors/:id" element={<InvestorDetail />} />
+            <Route
+              path="/explore/:kind"
+              element={
+                <Suspense fallback={<div className="h-[100dvh] bg-night" />}>
+                  <GlobeExplore />
+                </Suspense>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </motion.main>
       </AnimatePresence>
-      <Footer />
+      {!isGlobe && <Footer />}
     </div>
   );
 }
