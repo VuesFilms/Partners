@@ -11,7 +11,8 @@
  * All colours come from the project palette (tailwind.config.ts):
  *   magenta #841E62 → dots, rim glow, selected pin, country highlight
  *   night #0A1118 / navy #2A445E → globe body
- *   text (dark) #EEF2F5 → pins, outlines, connector line
+ *   teal #346B6D → pins
+ *   text (dark) #EEF2F5 → outlines, connector line
  *   amber #F3AA20 → "interest sent" marker on a pin (same colour as the Interest sent badge)
  */
 import { geoBounds, geoCentroid, geoContains, geoOrthographic, geoPath, type GeoPermissibleObjects } from 'd3-geo';
@@ -23,6 +24,8 @@ const AMBER = '#F3AA20';
 const NAVY = '42, 68, 94';
 const NIGHT = '10, 17, 24';
 const LIGHT = '238, 242, 245';
+/** pin colour: teal #346B6D from the palette */
+const TEAL = '52, 107, 109';
 
 export interface GlobePin {
   id: string;
@@ -654,10 +657,14 @@ export class GlobeEngine {
         ctx.beginPath();
         ctx.arc(s.x, s.y, rr + 2, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = `rgb(${LIGHT})`;
+        ctx.fillStyle = `rgb(${TEAL})`;
         ctx.beginPath();
         ctx.arc(s.x, s.y, rr, 0, Math.PI * 2);
         ctx.fill();
+        // faint light edge so the teal ring reads on the dark globe
+        ctx.strokeStyle = `rgba(${LIGHT}, ${isHover ? 0.85 : 0.45})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
         ctx.fillStyle = `rgb(${NIGHT})`;
         ctx.beginPath();
         ctx.arc(s.x, s.y, rr * 0.45, 0, Math.PI * 2);

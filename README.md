@@ -86,7 +86,7 @@ The globe screen (`src/pages/GlobeExplore.tsx`) draws the world on a `<canvas>`,
   - It draws the rim glow, ring pins and the pulsing selected pin.
   - It handles drag (a move under 6px still counts as a click), pin, country and ocean clicks, and hover.
   - Countries come from world-atlas 110m, and their Arabic and English names are generated into `src/data/globe-countries.json`.
-- **Colours:** magenta-plum `#841E62` for the dots, rim glow, selected pin and highlighted country. Near-white for regular pins. Amber for the small "interest sent" marker. The background is navy and night in both themes.
+- **Colours:** magenta-plum `#841E62` for the dots, rim glow, selected pin and highlighted country. Teal `#346B6D` for regular pins. Amber for the small "interest sent" marker. The background is navy and night in both themes.
 - **Behaviour:**
   - **Opening and tour:** the intro spins in and settles on Saudi Arabia (Skip jumps to the end). The tour then moves city to city every few seconds until the first click; "Resume tour" restarts it.
   - **Reduce motion:** with this setting on, everything fades instead of spinning or pulsing.
