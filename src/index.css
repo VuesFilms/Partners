@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Semantic tokens (RGB channels, built only from the palette) ---------- */
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: 244 246 248;   /* #F4F6F8  navy tint */
+    --surface: 255 255 255;      /* #FFFFFF */
+    --surface-2: 234 238 242;    /* #EAEEF2  input fill */
+    --text: 20 34 49;            /* #142231  navy 900 */
+    --muted: 94 110 126;         /* #5E6E7E  navy 500 */
+    --border: 220 226 232;       /* #DCE2E8  navy 100 */
+    --success: 52 107 109;       /* #346B6D  teal */
+    --primary-ink: 43 90 92;     /* #2B5A5C  teal, text on light */
+    --secondary-ink: 132 30 98;  /* #841E62  magenta */
+  }
+  .dark {
+    color-scheme: dark;
+    --background: 10 17 24;      /* #0A1118 */
+    --surface: 17 27 37;         /* #111B25 */
+    --surface-2: 25 38 51;       /* #192633 */
+    --text: 238 242 245;         /* #EEF2F5 */
+    --muted: 138 153 168;        /* #8A99A8 */
+    --border: 33 49 64;          /* #213140 */
+    --success: 78 148 150;       /* #4E9496  lighter teal */
+    --primary-ink: 109 176 178;  /* #6DB0B2 */
+    --secondary-ink: 214 128 181;/* #D680B5 */
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  html[lang='ar'] body { font-family: theme('fontFamily.arabic'); }
+  body {
+    @apply bg-background text-text font-sans antialiased;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  ::selection { background: rgb(243 170 32 / 0.35); }
+  :focus-visible { outline: 2px solid theme('colors.amber'); outline-offset: 2px; border-radius: 6px; }
+  button, a { touch-action: manipulation; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8; }
+
+  .btn {
+    @apply inline-flex min-h-[44px] select-none items-center justify-center gap-2 rounded-xl px-5 text-[15px] font-medium
+           transition-[background-color,color,box-shadow,transform] duration-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-primary { @apply btn bg-primary text-white hover:bg-navy shadow-[0_8px_24px_-12px_rgb(52_107_109/0.8)]; }
+  .btn-contrast { @apply btn bg-text text-background hover:opacity-90; }
+  .btn-outline { @apply btn border border-border bg-transparent text-text hover:bg-surface-2; }
+  .btn-ghost { @apply btn bg-transparent text-text hover:bg-surface-2; }
+  .btn-icon { @apply inline-flex h-11 w-11 items-center justify-center rounded-xl text-text transition-colors hover:bg-surface-2; }
+
+  .field-label { @apply mb-1.5 block text-sm font-medium text-text; }
+  .field {
+    @apply block min-h-[48px] w-full rounded-xl border border-transparent bg-surface-2 px-4 text-base text-text
+           placeholder:text-muted/80 transition-colors focus:border-primary/60 focus:bg-surface focus:outline-none focus:ring-4 focus:ring-primary/15;
+  }
+
+  .card {
+    @apply rounded-2xl border border-border bg-surface shadow-card;
+  }
+  .chip {
+    @apply inline-flex min-h-[36px] items-center gap-1.5 rounded-full border border-border px-3 text-sm text-text transition-colors;
+  }
+  .chip-on { @apply border-primary bg-primary text-white; }
+  .tag {
+    @apply inline-flex items-center gap-1 rounded-md bg-surface-2 px-2 py-1 text-xs font-medium text-muted;
+  }
+
+  /* Dark gradient "glow" panel taken from the reference UI */
+  .glow-panel {
+    @apply relative isolate overflow-hidden rounded-3xl text-white ring-1 ring-inset ring-white/[0.06];
+    background: linear-gradient(165deg, #12202b 0%, #0b141b 45%, #0a1118 100%);
+  }
+  .glow-panel::before {
+    content: '';
+    position: absolute; inset: -20%; z-index: -1;
+    background:
+      radial-gradient(42% 48% at 78% 72%, rgb(52 107 109 / 0.95), transparent 70%),
+      radial-gradient(38% 42% at 18% 8%, rgb(42 68 94 / 0.9), transparent 70%),
+      radial-gradient(30% 34% at 12% 92%, rgb(88 9 79 / 0.55), transparent 70%);
+    filter: blur(8px);
+    animation: glow-drift 18s ease-in-out infinite;
+  }
+  .glow-panel.glow-plum::before {
+    background:
+      radial-gradient(42% 48% at 78% 72%, rgb(132 30 98 / 0.9), transparent 70%),
+      radial-gradient(38% 42% at 18% 8%, rgb(88 9 79 / 0.9), transparent 70%),
+      radial-gradient(30% 34% at 12% 92%, rgb(52 107 109 / 0.6), transparent 70%);
+  }
+  .glow-panel.glow-mixed::before {
+    background:
+      radial-gradient(40% 50% at 85% 80%, rgb(52 107 109 / 0.9), transparent 70%),
+      radial-gradient(36% 46% at 10% 85%, rgb(132 30 98 / 0.7), transparent 70%),
+      radial-gradient(45% 40% at 30% 0%, rgb(42 68 94 / 0.85), transparent 70%);
+  }
+  .glass {
+    @apply border border-white/10 bg-white/[0.07] backdrop-blur-md;
+  }
+}
+
+@layer utilities {
+  .rtl-flip { @apply rtl:-scale-x-100; }
+  .pb-safe { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+  .tabular { font-variant-numeric: tabular-nums; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* Dual range slider: two native inputs stacked */
+.range-input {
+  -webkit-appearance: none; appearance: none;
+  position: absolute; inset: 0; width: 100%; height: 44px; margin: 0;
+  background: transparent; pointer-events: none;
+}
+.range-input::-webkit-slider-runnable-track { height: 44px; background: transparent; }
+.range-input::-moz-range-track { height: 44px; background: transparent; }
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none; pointer-events: auto; cursor: grab;
+  width: 24px; height: 24px; margin-top: 10px; border-radius: 9999px;
+  background: #fff; border: 2px solid #346B6D; box-shadow: 0 2px 8px rgb(10 17 24 / 0.3);
+}
+.range-input::-moz-range-thumb {
+  pointer-events: auto; cursor: grab; width: 20px; height: 20px; border-radius: 9999px;
+  background: #fff; border: 2px solid #346B6D; box-shadow: 0 2px 8px rgb(10 17 24 / 0.3);
+}
+.range-input:focus-visible::-webkit-slider-thumb { outline: 3px solid #F3AA20; outline-offset: 2px; }

@@ -1,0 +1,321 @@
+/**
+ * Single translation dictionary for the whole platform.
+ *
+ *  - `ui`        : every interface string.
+ *  - `sectors`, `cities`, `countries`, … : labels for the shared taxonomy.
+ *
+ * Sample data (brand names, profiles, descriptions) lives in src/data and uses
+ * the same `{ en, ar }` shape so every visible string exists in both languages.
+ */
+
+export type Lang = 'en' | 'ar';
+export type L = { en: string; ar: string };
+
+export const ui = {
+  brand: { en: 'Partners', ar: 'شركاء' },
+  brandAlt: { en: 'شركاء', ar: 'Partners' },
+  valueStatement: {
+    en: 'Where GCC investors and franchise brands find each other.',
+    ar: 'حيث يلتقي المستثمرون في الخليج بالعلامات التجارية الباحثة عن امتياز.',
+  },
+  heroEyebrow: { en: 'Franchise matchmaking for the GCC', ar: 'منصة توفيق الامتيازات التجارية في الخليج' },
+  whoAreYou: { en: 'Who are you?', ar: 'من أنت؟' },
+  chooseSide: { en: 'Choose your side to get started.', ar: 'اختر صفتك للبدء.' },
+  imInvestor: { en: "I'm an Investor", ar: 'أنا مستثمر' },
+  imInvestorDesc: {
+    en: 'Browse vetted franchise brands ready to expand across Saudi Arabia and the Gulf.',
+    ar: 'تصفّح علامات امتياز موثوقة جاهزة للتوسع في السعودية والخليج.',
+  },
+  imInvestorCta: { en: 'Explore franchises', ar: 'استكشف الامتيازات' },
+  imFranchise: { en: "I'm a Franchise", ar: 'أنا صاحب امتياز تجاري' },
+  imFranchiseDesc: {
+    en: 'Meet individuals, family offices and firms with capital ready to deploy.',
+    ar: 'تعرّف على أفراد ومكاتب عائلية وشركات لديها رأس مال جاهز للاستثمار.',
+  },
+  imFranchiseCta: { en: 'Find investors', ar: 'ابحث عن مستثمرين' },
+  brandsListed: { en: 'brands listed', ar: 'علامة مدرجة' },
+  investorsActive: { en: 'active investors', ar: 'مستثمر نشط' },
+  howItWorks: { en: 'How it works', ar: 'كيف تعمل المنصة' },
+  step1: { en: 'Choose your side', ar: 'اختر صفتك' },
+  step2: { en: 'Filter for fit', ar: 'صفِّ حسب الملاءمة' },
+  step3: { en: 'Express interest', ar: 'أبدِ اهتمامك' },
+
+  // Navigation / chrome
+  navFranchises: { en: 'Franchises', ar: 'الامتيازات' },
+  navInvestors: { en: 'Investors', ar: 'المستثمرون' },
+  navHome: { en: 'Home', ar: 'الرئيسية' },
+  menu: { en: 'Menu', ar: 'القائمة' },
+  close: { en: 'Close', ar: 'إغلاق' },
+  switchLang: { en: 'العربية', ar: 'English' },
+  switchLangShort: { en: 'ع', ar: 'EN' },
+  switchLangLabel: { en: 'Switch to Arabic', ar: 'التبديل إلى الإنجليزية' },
+  themeLight: { en: 'Light mode', ar: 'الوضع الفاتح' },
+  themeDark: { en: 'Dark mode', ar: 'الوضع الداكن' },
+  footerNote: {
+    en: 'Demo platform. All brands, investors and figures are illustrative.',
+    ar: 'منصة تجريبية. جميع العلامات والمستثمرين والأرقام توضيحية.',
+  },
+  rights: { en: 'Partners demo', ar: 'نسخة تجريبية من شركاء' },
+
+  // Stats
+  statBrands: { en: 'Franchise brands listed', ar: 'علامة امتياز مدرجة' },
+  statInvestors: { en: 'Active investors', ar: 'مستثمر نشط' },
+  statCapital: { en: 'Total capital available', ar: 'إجمالي رأس المال المتاح' },
+  statRequests: { en: 'Interest requests sent', ar: 'طلب اهتمام مُرسل' },
+
+  // Marketplace
+  marketTitle: { en: 'Franchise marketplace', ar: 'سوق الامتيازات' },
+  marketSubtitle: {
+    en: 'Brands actively looking for investors and operators across the GCC.',
+    ar: 'علامات تبحث عن مستثمرين ومشغّلين في دول الخليج.',
+  },
+  directoryTitle: { en: 'Investor directory', ar: 'دليل المستثمرين' },
+  directorySubtitle: {
+    en: 'Capital partners ready to open, grow or master-franchise your brand.',
+    ar: 'شركاء برأس مال جاهز لافتتاح علامتك أو توسيعها أو امتلاك امتيازها الرئيسي.',
+  },
+  searchBrands: { en: 'Search brands', ar: 'ابحث عن علامة' },
+  searchInvestors: { en: 'Search investors', ar: 'ابحث عن مستثمر' },
+  filters: { en: 'Filters', ar: 'التصفية' },
+  apply: { en: 'Apply', ar: 'تطبيق' },
+  reset: { en: 'Reset', ar: 'إعادة ضبط' },
+  clearAll: { en: 'Clear all', ar: 'مسح الكل' },
+  sector: { en: 'Sector', ar: 'القطاع' },
+  sectors: { en: 'Sectors', ar: 'القطاعات' },
+  preferredSector: { en: 'Preferred sector', ar: 'القطاع المفضّل' },
+  investmentRange: { en: 'Investment range', ar: 'نطاق الاستثمار' },
+  capitalRange: { en: 'Capital available', ar: 'رأس المال المتاح' },
+  location: { en: 'Country / city', ar: 'الدولة / المدينة' },
+  baseLocation: { en: 'Base country / city', ar: 'دولة / مدينة المقر' },
+  allLocations: { en: 'All locations', ar: 'كل المواقع' },
+  allCountry: { en: 'All of', ar: 'كل' },
+  investorType: { en: 'Investor type', ar: 'نوع المستثمر' },
+  sortBy: { en: 'Sort by', ar: 'ترتيب حسب' },
+  sortNewest: { en: 'Newest', ar: 'الأحدث' },
+  sortInvLow: { en: 'Investment: low to high', ar: 'الاستثمار: من الأقل' },
+  sortInvHigh: { en: 'Investment: high to low', ar: 'الاستثمار: من الأعلى' },
+  sortCapLow: { en: 'Capital: low to high', ar: 'رأس المال: من الأقل' },
+  sortCapHigh: { en: 'Capital: high to low', ar: 'رأس المال: من الأعلى' },
+  results: { en: 'results', ar: 'نتيجة' },
+  result: { en: 'result', ar: 'نتيجة' },
+  showResults: { en: 'Show results', ar: 'عرض النتائج' },
+  noResults: { en: 'No matches yet', ar: 'لا توجد نتائج' },
+  noResultsHint: {
+    en: 'Try widening the range or clearing a filter.',
+    ar: 'جرّب توسيع النطاق أو إزالة أحد عوامل التصفية.',
+  },
+
+  // Cards
+  investment: { en: 'Investment', ar: 'الاستثمار' },
+  branches: { en: 'Branches', ar: 'الفروع' },
+  branchesCount: { en: 'branches', ar: 'فرعًا' },
+  targetCities: { en: 'Target cities', ar: 'المدن المستهدفة' },
+  origin: { en: 'Origin', ar: 'المنشأ' },
+  capital: { en: 'Capital', ar: 'رأس المال' },
+  unitsOperated: { en: 'Units operated', ar: 'الوحدات المُشغّلة' },
+  units: { en: 'units', ar: 'وحدة' },
+  baseCity: { en: 'Based in', ar: 'المقر' },
+  viewDetails: { en: 'View details', ar: 'عرض التفاصيل' },
+  interestSent: { en: 'Interest sent', ar: 'تم إرسال الاهتمام' },
+  newListing: { en: 'New', ar: 'جديد' },
+  more: { en: 'more', ar: 'أخرى' },
+
+  // Franchise detail
+  back: { en: 'Back', ar: 'رجوع' },
+  backToMarket: { en: 'Back to marketplace', ar: 'العودة إلى السوق' },
+  backToDirectory: { en: 'Back to directory', ar: 'العودة إلى الدليل' },
+  overview: { en: 'Overview', ar: 'نظرة عامة' },
+  founded: { en: 'Founded', ar: 'سنة التأسيس' },
+  gccBranches: { en: 'GCC branches', ar: 'فروع الخليج' },
+  totalBranches: { en: 'Branches worldwide', ar: 'الفروع حول العالم' },
+  investmentBreakdown: { en: 'Investment breakdown', ar: 'تفاصيل الاستثمار' },
+  franchiseFee: { en: 'Franchise fee', ar: 'رسوم الامتياز' },
+  setupCost: { en: 'Total setup cost', ar: 'إجمالي تكلفة التأسيس' },
+  royalty: { en: 'Royalty', ar: 'الإتاوة' },
+  marketingFee: { en: 'Marketing fee', ar: 'رسوم التسويق' },
+  ofSales: { en: 'of gross sales', ar: 'من إجمالي المبيعات' },
+  payback: { en: 'Estimated payback', ar: 'فترة الاسترداد المتوقعة' },
+  months: { en: 'months', ar: 'شهرًا' },
+  unitSize: { en: 'Typical unit size', ar: 'المساحة النموذجية' },
+  sqm: { en: 'm²', ar: 'م²' },
+  whatProvided: { en: 'What the franchisor provides', ar: 'ما يقدّمه مانح الامتياز' },
+  expansionCities: { en: 'Target expansion cities', ar: 'مدن التوسع المستهدفة' },
+  expressInterest: { en: 'Express interest', ar: 'أبدِ اهتمامك' },
+  interestAlready: { en: 'Interest sent · Send again', ar: 'تم الإرسال · أرسل مجددًا' },
+  noCommitment: {
+    en: 'No commitment. The brand team will reply directly.',
+    ar: 'دون أي التزام. سيتواصل معك فريق العلامة مباشرة.',
+  },
+  noCommitmentInvestor: {
+    en: 'No commitment. The investor will review your brand and reply.',
+    ar: 'دون أي التزام. سيراجع المستثمر علامتك ويرد عليك.',
+  },
+  atAGlance: { en: 'At a glance', ar: 'لمحة سريعة' },
+  notFound: { en: 'We couldn’t find that page.', ar: 'تعذّر العثور على هذه الصفحة.' },
+  goHome: { en: 'Go to home', ar: 'الذهاب إلى الرئيسية' },
+
+  // Investor detail
+  profile: { en: 'Profile', ar: 'نبذة' },
+  investmentFocus: { en: 'Investment focus', ar: 'التركيز الاستثماري' },
+  ticketSize: { en: 'Ticket size', ar: 'حجم الاستثمار للصفقة' },
+  dealStructure: { en: 'Preferred deal structure', ar: 'هيكل الصفقة المفضّل' },
+  portfolio: { en: 'Current portfolio', ar: 'المحفظة الحالية' },
+  memberSince: { en: 'On Partners since', ar: 'عضو في شركاء منذ' },
+
+  // Interest modal
+  modalTitleFranchise: { en: 'Express interest in', ar: 'أبدِ اهتمامك بـ' },
+  modalTitleInvestor: { en: 'Introduce your brand to', ar: 'قدّم علامتك إلى' },
+  modalIntro: {
+    en: 'Share a few details and we’ll pass your note along.',
+    ar: 'شاركنا بعض التفاصيل وسنوصل رسالتك.',
+  },
+  fullName: { en: 'Full name', ar: 'الاسم الكامل' },
+  company: { en: 'Company', ar: 'الشركة' },
+  email: { en: 'Email', ar: 'البريد الإلكتروني' },
+  phone: { en: 'Phone', ar: 'رقم الجوال' },
+  message: { en: 'Message', ar: 'الرسالة' },
+  optional: { en: 'optional', ar: 'اختياري' },
+  phNameFr: { en: 'e.g. Faisal Al-Harbi', ar: 'مثال: فيصل الحربي' },
+  phCompanyFr: { en: 'e.g. Harbi Holding', ar: 'مثال: الحربي القابضة' },
+  phNameInv: { en: 'e.g. Lina Haddad', ar: 'مثال: لينا حداد' },
+  phCompanyInv: { en: 'e.g. Your brand name', ar: 'مثال: اسم علامتك' },
+  phEmail: { en: 'name@company.com', ar: 'name@company.com' },
+  phPhone: { en: '+966 5x xxx xxxx', ar: '+966 5x xxx xxxx' },
+  send: { en: 'Send interest', ar: 'إرسال الاهتمام' },
+  sending: { en: 'Sending…', ar: 'جارٍ الإرسال…' },
+  cancel: { en: 'Cancel', ar: 'إلغاء' },
+  errRequired: { en: 'Required', ar: 'حقل مطلوب' },
+  errEmail: { en: 'Enter a valid email', ar: 'أدخل بريدًا إلكترونيًا صحيحًا' },
+  successTitle: { en: 'Interest sent', ar: 'تم إرسال اهتمامك' },
+  successBodyFranchise: {
+    en: 'Your note is on its way to the {name} team. In the live platform they would reply within 2 business days.',
+    ar: 'رسالتك في طريقها إلى فريق {name}. في المنصة الفعلية سيتم الرد خلال يومي عمل.',
+  },
+  successBodyInvestor: {
+    en: 'Your introduction is on its way to {name}. In the live platform they would reply within 2 business days.',
+    ar: 'تعريفك في طريقه إلى {name}. في المنصة الفعلية سيتم الرد خلال يومي عمل.',
+  },
+  demoNoEmail: {
+    en: 'Demo only: nothing was emailed. Your request is saved in this browser.',
+    ar: 'نسخة تجريبية: لم يُرسل أي بريد. حُفظ طلبك في هذا المتصفح.',
+  },
+  done: { en: 'Done', ar: 'تم' },
+  templateToFranchise: {
+    en: 'Hello {name} team,\n\nI’m interested in opening {name} in the GCC and would like to learn more about your requirements, available territories and next steps.\n\nLooking forward to hearing from you.',
+    ar: 'مرحبًا فريق {name}،\n\nأنا مهتم بافتتاح {name} في الخليج وأود معرفة المزيد عن متطلباتكم والمناطق المتاحة والخطوات التالية.\n\nبانتظار ردكم.',
+  },
+  templateToInvestor: {
+    en: 'Hello {name},\n\nWe believe our franchise could be a strong fit for your investment focus and would welcome the chance to share our expansion plan and unit economics with you.\n\nKind regards.',
+    ar: 'مرحبًا {name}،\n\nنعتقد أن امتيازنا يتوافق مع تركيزكم الاستثماري، ويسعدنا أن نعرض عليكم خطة التوسع واقتصاديات الوحدة.\n\nمع خالص التحية.',
+  },
+} satisfies Record<string, L>;
+
+export type UiKey = keyof typeof ui;
+
+// ---------- Taxonomy ----------
+
+export const sectors = {
+  fnb: { en: 'Food & Beverage', ar: 'الأغذية والمشروبات' },
+  coffee: { en: 'Coffee', ar: 'القهوة' },
+  fitness: { en: 'Fitness', ar: 'اللياقة البدنية' },
+  education: { en: 'Education', ar: 'التعليم' },
+  retail: { en: 'Retail', ar: 'التجزئة' },
+  beauty: { en: 'Beauty & Wellness', ar: 'التجميل والعافية' },
+  healthcare: { en: 'Healthcare', ar: 'الرعاية الصحية' },
+  services: { en: 'Services', ar: 'الخدمات' },
+} satisfies Record<string, L>;
+export type SectorId = keyof typeof sectors;
+export const sectorIds = Object.keys(sectors) as SectorId[];
+
+export const countries = {
+  SA: { en: 'Saudi Arabia', ar: 'السعودية' },
+  AE: { en: 'UAE', ar: 'الإمارات' },
+  QA: { en: 'Qatar', ar: 'قطر' },
+  KW: { en: 'Kuwait', ar: 'الكويت' },
+  BH: { en: 'Bahrain', ar: 'البحرين' },
+  OM: { en: 'Oman', ar: 'عُمان' },
+  // international origins
+  US: { en: 'United States', ar: 'الولايات المتحدة' },
+  GB: { en: 'United Kingdom', ar: 'المملكة المتحدة' },
+  IT: { en: 'Italy', ar: 'إيطاليا' },
+  FR: { en: 'France', ar: 'فرنسا' },
+  JP: { en: 'Japan', ar: 'اليابان' },
+  KR: { en: 'South Korea', ar: 'كوريا الجنوبية' },
+  AU: { en: 'Australia', ar: 'أستراليا' },
+  ES: { en: 'Spain', ar: 'إسبانيا' },
+} satisfies Record<string, L>;
+export type CountryId = keyof typeof countries;
+export const gccCountries: CountryId[] = ['SA', 'AE', 'QA', 'KW', 'BH', 'OM'];
+
+export const cities = {
+  riyadh: { en: 'Riyadh', ar: 'الرياض', country: 'SA' },
+  jeddah: { en: 'Jeddah', ar: 'جدة', country: 'SA' },
+  dammam: { en: 'Dammam', ar: 'الدمام', country: 'SA' },
+  dubai: { en: 'Dubai', ar: 'دبي', country: 'AE' },
+  abudhabi: { en: 'Abu Dhabi', ar: 'أبوظبي', country: 'AE' },
+  doha: { en: 'Doha', ar: 'الدوحة', country: 'QA' },
+  kuwait: { en: 'Kuwait City', ar: 'مدينة الكويت', country: 'KW' },
+  manama: { en: 'Manama', ar: 'المنامة', country: 'BH' },
+  muscat: { en: 'Muscat', ar: 'مسقط', country: 'OM' },
+} satisfies Record<string, L & { country: CountryId }>;
+export type CityId = keyof typeof cities;
+export const cityIds = Object.keys(cities) as CityId[];
+
+export const investorTypes = {
+  individual: { en: 'Individual', ar: 'فرد' },
+  family: { en: 'Family Office', ar: 'مكتب عائلي' },
+  firm: { en: 'Investment Firm', ar: 'شركة استثمار' },
+  corporate: { en: 'Corporate', ar: 'شركة' },
+} satisfies Record<string, L>;
+export type InvestorTypeId = keyof typeof investorTypes;
+export const investorTypeIds = Object.keys(investorTypes) as InvestorTypeId[];
+
+export const dealStructures = {
+  single: { en: 'Single unit', ar: 'وحدة واحدة' },
+  multi: { en: 'Multi-unit', ar: 'وحدات متعددة' },
+  master: { en: 'Master franchise', ar: 'امتياز رئيسي' },
+} satisfies Record<string, L>;
+export type DealStructureId = keyof typeof dealStructures;
+
+export const provisions = {
+  training: {
+    en: 'Training',
+    ar: 'التدريب',
+    desc: { en: 'Owner and staff training before opening and ongoing.', ar: 'تدريب المالك والموظفين قبل الافتتاح وبشكل مستمر.' },
+  },
+  supply: {
+    en: 'Supply chain',
+    ar: 'سلسلة الإمداد',
+    desc: { en: 'Approved suppliers, logistics and core product supply.', ar: 'موردون معتمدون وخدمات لوجستية وتوريد المنتجات الأساسية.' },
+  },
+  marketing: {
+    en: 'Marketing',
+    ar: 'التسويق',
+    desc: { en: 'Launch campaign, brand assets and regional marketing.', ar: 'حملة الافتتاح وأصول العلامة والتسويق الإقليمي.' },
+  },
+  site: {
+    en: 'Site selection',
+    ar: 'اختيار الموقع',
+    desc: { en: 'Location scouting, lease review and fit-out guidance.', ar: 'البحث عن الموقع ومراجعة الإيجار وتوجيهات التجهيز.' },
+  },
+  tech: {
+    en: 'Technology',
+    ar: 'التقنية',
+    desc: { en: 'POS, ordering app and operations dashboards.', ar: 'نقاط البيع وتطبيق الطلبات ولوحات متابعة التشغيل.' },
+  },
+  fitout: {
+    en: 'Design & fit-out',
+    ar: 'التصميم والتجهيز',
+    desc: { en: 'Store design package and approved contractors.', ar: 'حزمة تصميم الفرع ومقاولون معتمدون.' },
+  },
+} satisfies Record<string, L & { desc: L }>;
+export type ProvisionId = keyof typeof provisions;
+
+// ---------- helpers ----------
+
+/** Translate a `{ en, ar }` object. */
+export const tr = (value: L, lang: Lang) => value[lang];
+
+/** Replace `{name}` style placeholders. */
+export const fill = (text: string, vars: Record<string, string | number>) =>
+  text.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
