@@ -39,7 +39,8 @@ const AppContext = createContext<AppState | null>(null);
 const initialLang = (): Lang => {
   const saved = readJSON<Lang | null>(KEYS.lang, null);
   if (saved === 'en' || saved === 'ar') return saved;
-  return typeof navigator !== 'undefined' && navigator.language?.startsWith('ar') ? 'ar' : 'en';
+  // First visit always opens in Arabic; the visitor's choice is remembered after that.
+  return 'ar';
 };
 const initialTheme = (): Theme => {
   const saved = readJSON<Theme | null>(KEYS.theme, null);

@@ -34,7 +34,7 @@ npm run build && npm run preview
 | Investor detail | `/investors/:id` |
 
 - **Express interest** opens a form (a full-screen sheet on phones). Submissions are saved to `localStorage` under `partners.interests`, the card gets an "Interest sent" badge, and the "Interest requests sent" counter goes up.
-- **Language** and **theme** are remembered in `localStorage` (`partners.lang`, `partners.theme`). Dark is the default.
+- **Language** and **theme** are remembered in `localStorage` (`partners.lang`, `partners.theme`). First-time visitors see Arabic and dark mode; change the default language in `initialLang` in `src/context/AppContext.tsx` and the `lang`/`dir` on `<html>` in `index.html`.
 - **Filters** stay in place when you open a detail page and come back (kept in `sessionStorage`).
 - To reset the demo, clear the site data in your browser or run `localStorage.clear()` in the console.
 
