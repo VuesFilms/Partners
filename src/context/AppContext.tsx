@@ -58,7 +58,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     root.lang = lang;
     root.dir = dir;
     writeJSON(KEYS.lang, lang);
-    document.title = lang === 'ar' ? 'شركاء · منصة الامتيازات التجارية' : 'Partners · Franchise matchmaking for the GCC';
+    document.title = lang === 'ar' ? 'شركاء · منصة الامتيازات التجارية' : 'Partners · Franchise matchmaking in Saudi Arabia';
   }, [lang, dir]);
 
   useEffect(() => {

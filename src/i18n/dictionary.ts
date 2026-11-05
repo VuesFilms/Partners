@@ -15,16 +15,16 @@ export const ui = {
   brand: { en: 'Partners', ar: 'شركاء' },
   brandAlt: { en: 'شركاء', ar: 'Partners' },
   valueStatement: {
-    en: 'Where GCC investors and franchise brands find each other.',
-    ar: 'حيث يلتقي المستثمرون في الخليج بالعلامات التجارية الباحثة عن امتياز.',
+    en: 'Where Saudi investors and franchise brands find each other.',
+    ar: 'حيث يلتقي المستثمرون في السعودية بالعلامات التجارية الباحثة عن امتياز.',
   },
-  heroEyebrow: { en: 'Franchise matchmaking for the GCC', ar: 'منصة توفيق الامتيازات التجارية في الخليج' },
+  heroEyebrow: { en: 'Franchise matchmaking in Saudi Arabia', ar: 'منصة توفيق الامتيازات التجارية في السعودية' },
   whoAreYou: { en: 'Who are you?', ar: 'من أنت؟' },
   chooseSide: { en: 'Choose your side to get started.', ar: 'اختر صفتك للبدء.' },
   imInvestor: { en: "I'm an Investor", ar: 'أنا مستثمر' },
   imInvestorDesc: {
-    en: 'Browse vetted franchise brands ready to expand across Saudi Arabia and the Gulf.',
-    ar: 'تصفّح علامات امتياز موثوقة جاهزة للتوسع في السعودية والخليج.',
+    en: 'Browse vetted franchise brands ready to expand across Saudi Arabia.',
+    ar: 'تصفّح علامات امتياز موثوقة جاهزة للتوسع في أنحاء المملكة.',
   },
   imInvestorCta: { en: 'Explore franchises', ar: 'استكشف الامتيازات' },
   imFranchise: { en: "I'm a Franchise", ar: 'أنا صاحب امتياز تجاري' },
@@ -66,8 +66,8 @@ export const ui = {
   // Marketplace
   marketTitle: { en: 'Franchise marketplace', ar: 'سوق الامتيازات' },
   marketSubtitle: {
-    en: 'Brands actively looking for investors and operators across the GCC.',
-    ar: 'علامات تبحث عن مستثمرين ومشغّلين في دول الخليج.',
+    en: 'Brands actively looking for investors and operators across Saudi Arabia.',
+    ar: 'علامات تبحث عن مستثمرين ومشغّلين في أنحاء المملكة.',
   },
   directoryTitle: { en: 'Investor directory', ar: 'دليل المستثمرين' },
   directorySubtitle: {
@@ -85,10 +85,10 @@ export const ui = {
   preferredSector: { en: 'Preferred sector', ar: 'القطاع المفضّل' },
   investmentRange: { en: 'Investment range', ar: 'نطاق الاستثمار' },
   capitalRange: { en: 'Capital available', ar: 'رأس المال المتاح' },
-  location: { en: 'Country / city', ar: 'الدولة / المدينة' },
-  baseLocation: { en: 'Base country / city', ar: 'دولة / مدينة المقر' },
-  allLocations: { en: 'All locations', ar: 'كل المواقع' },
-  allCountry: { en: 'All of', ar: 'كل' },
+  location: { en: 'Region / city', ar: 'المنطقة / المدينة' },
+  baseLocation: { en: 'Base region / city', ar: 'منطقة / مدينة المقر' },
+  allLocations: { en: 'All of Saudi Arabia', ar: 'كل مناطق المملكة' },
+  allRegion: { en: 'All of', ar: 'كل' },
   investorType: { en: 'Investor type', ar: 'نوع المستثمر' },
   sortBy: { en: 'Sort by', ar: 'ترتيب حسب' },
   sortNewest: { en: 'Newest', ar: 'الأحدث' },
@@ -126,7 +126,7 @@ export const ui = {
   backToDirectory: { en: 'Back to directory', ar: 'العودة إلى الدليل' },
   overview: { en: 'Overview', ar: 'نظرة عامة' },
   founded: { en: 'Founded', ar: 'سنة التأسيس' },
-  gccBranches: { en: 'GCC branches', ar: 'فروع الخليج' },
+  ksaBranches: { en: 'Branches in Saudi Arabia', ar: 'الفروع في السعودية' },
   totalBranches: { en: 'Branches worldwide', ar: 'الفروع حول العالم' },
   investmentBreakdown: { en: 'Investment breakdown', ar: 'تفاصيل الاستثمار' },
   franchiseFee: { en: 'Franchise fee', ar: 'رسوم الامتياز' },
@@ -201,8 +201,8 @@ export const ui = {
   },
   done: { en: 'Done', ar: 'تم' },
   templateToFranchise: {
-    en: 'Hello {name} team,\n\nI’m interested in opening {name} in the GCC and would like to learn more about your requirements, available territories and next steps.\n\nLooking forward to hearing from you.',
-    ar: 'مرحبًا فريق {name}،\n\nأنا مهتم بافتتاح {name} في الخليج وأود معرفة المزيد عن متطلباتكم والمناطق المتاحة والخطوات التالية.\n\nبانتظار ردكم.',
+    en: 'Hello {name} team,\n\nI’m interested in opening {name} in Saudi Arabia and would like to learn more about your requirements, available territories and next steps.\n\nLooking forward to hearing from you.',
+    ar: 'مرحبًا فريق {name}،\n\nأنا مهتم بافتتاح {name} في السعودية وأود معرفة المزيد عن متطلباتكم والمناطق المتاحة والخطوات التالية.\n\nبانتظار ردكم.',
   },
   templateToInvestor: {
     en: 'Hello {name},\n\nWe believe our franchise could be a strong fit for your investment focus and would welcome the chance to share our expansion plan and unit economics with you.\n\nKind regards.',
@@ -227,14 +227,9 @@ export const sectors = {
 export type SectorId = keyof typeof sectors;
 export const sectorIds = Object.keys(sectors) as SectorId[];
 
+/** Brand countries of origin (where a franchise brand was founded). */
 export const countries = {
   SA: { en: 'Saudi Arabia', ar: 'السعودية' },
-  AE: { en: 'UAE', ar: 'الإمارات' },
-  QA: { en: 'Qatar', ar: 'قطر' },
-  KW: { en: 'Kuwait', ar: 'الكويت' },
-  BH: { en: 'Bahrain', ar: 'البحرين' },
-  OM: { en: 'Oman', ar: 'عُمان' },
-  // international origins
   US: { en: 'United States', ar: 'الولايات المتحدة' },
   GB: { en: 'United Kingdom', ar: 'المملكة المتحدة' },
   IT: { en: 'Italy', ar: 'إيطاليا' },
@@ -245,19 +240,32 @@ export const countries = {
   ES: { en: 'Spain', ar: 'إسبانيا' },
 } satisfies Record<string, L>;
 export type CountryId = keyof typeof countries;
-export const gccCountries: CountryId[] = ['SA', 'AE', 'QA', 'KW', 'BH', 'OM'];
 
+/** Saudi regions, used to group cities in the location filter. */
+export const regions = {
+  central: { en: 'Central Region', ar: 'المنطقة الوسطى' },
+  western: { en: 'Western Region', ar: 'المنطقة الغربية' },
+  eastern: { en: 'Eastern Province', ar: 'المنطقة الشرقية' },
+  southern: { en: 'Southern Region', ar: 'المنطقة الجنوبية' },
+  northern: { en: 'Northern Region', ar: 'المنطقة الشمالية' },
+} satisfies Record<string, L>;
+export type RegionId = keyof typeof regions;
+export const regionIds = Object.keys(regions) as RegionId[];
+
+/** Saudi cities only. */
 export const cities = {
-  riyadh: { en: 'Riyadh', ar: 'الرياض', country: 'SA' },
-  jeddah: { en: 'Jeddah', ar: 'جدة', country: 'SA' },
-  dammam: { en: 'Dammam', ar: 'الدمام', country: 'SA' },
-  dubai: { en: 'Dubai', ar: 'دبي', country: 'AE' },
-  abudhabi: { en: 'Abu Dhabi', ar: 'أبوظبي', country: 'AE' },
-  doha: { en: 'Doha', ar: 'الدوحة', country: 'QA' },
-  kuwait: { en: 'Kuwait City', ar: 'مدينة الكويت', country: 'KW' },
-  manama: { en: 'Manama', ar: 'المنامة', country: 'BH' },
-  muscat: { en: 'Muscat', ar: 'مسقط', country: 'OM' },
-} satisfies Record<string, L & { country: CountryId }>;
+  riyadh: { en: 'Riyadh', ar: 'الرياض', region: 'central' },
+  buraidah: { en: 'Buraidah', ar: 'بريدة', region: 'central' },
+  jeddah: { en: 'Jeddah', ar: 'جدة', region: 'western' },
+  makkah: { en: 'Makkah', ar: 'مكة المكرمة', region: 'western' },
+  madinah: { en: 'Madinah', ar: 'المدينة المنورة', region: 'western' },
+  taif: { en: 'Taif', ar: 'الطائف', region: 'western' },
+  dammam: { en: 'Dammam', ar: 'الدمام', region: 'eastern' },
+  khobar: { en: 'Al Khobar', ar: 'الخبر', region: 'eastern' },
+  ahsa: { en: 'Al Ahsa', ar: 'الأحساء', region: 'eastern' },
+  abha: { en: 'Abha', ar: 'أبها', region: 'southern' },
+  tabuk: { en: 'Tabuk', ar: 'تبوك', region: 'northern' },
+} satisfies Record<string, L & { region: RegionId }>;
 export type CityId = keyof typeof cities;
 export const cityIds = Object.keys(cities) as CityId[];
 

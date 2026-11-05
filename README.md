@@ -1,6 +1,6 @@
 # Partners · شركاء
 
-A clickable pitch demo of a platform that connects **GCC investors** with **franchise brands**.
+A clickable pitch demo of a platform that connects **investors in Saudi Arabia** with **franchise brands** expanding in the Kingdom.
 Bilingual (English / Arabic with full RTL), light and dark mode, mobile first, installable as a home-screen app.
 
 > Demo platform. All brands, investors and figures are illustrative. There is no backend, no login and no emails are sent.

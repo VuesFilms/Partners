@@ -8,7 +8,7 @@ import { InterestModal } from '../components/InterestModal';
 import { Monogram } from '../components/Monogram';
 import { useApp } from '../context/AppContext';
 import { getFranchise } from '../data/franchises';
-import { cities, countries, provisions, sectors } from '../i18n/dictionary';
+import { cities, countries, provisions, regions, sectors } from '../i18n/dictionary';
 import { formatMoneyRangeFull, formatSAR, formatSARRange, formatUSD, formatUSDRange } from '../lib/currency';
 import { provisionIcon, sectorGradient, sectorIcon } from '../lib/icons';
 import NotFound from './NotFound';
@@ -56,7 +56,7 @@ export default function FranchiseDetail() {
           <KeyFigure label={t('investment')} value={formatSARRange(f.investmentMin, f.investmentMax, lang)} sub={formatUSDRange(f.investmentMin, f.investmentMax, lang)} />
           <KeyFigure label={t('franchiseFee')} value={fee.sar} sub={fee.usd} />
           <KeyFigure label={t('payback')} value={`${f.paybackMonths[0]}–${f.paybackMonths[1]} ${t('months')}`} />
-          <KeyFigure label={t('gccBranches')} value={f.branchesGcc} sub={`${f.branchesTotal} ${t('branchesCount')}`} />
+          <KeyFigure label={t('ksaBranches')} value={f.branchesKsa} sub={`${f.branchesTotal} ${t('branchesCount')}`} />
         </div>
       </motion.section>
 
@@ -69,7 +69,7 @@ export default function FranchiseDetail() {
                 [t('sector'), tr(sectors[f.sector])],
                 [t('founded'), f.founded],
                 [t('totalBranches'), f.branchesTotal],
-                [t('gccBranches'), f.branchesGcc],
+                [t('ksaBranches'), f.branchesKsa],
               ].map(([k, v]) => (
                 <div key={String(k)}>
                   <dt className="text-sm text-muted">{k}</dt>
@@ -115,7 +115,7 @@ export default function FranchiseDetail() {
                 <li key={c} className="chip min-h-[40px] bg-surface-2">
                   <MapPin className="h-3.5 w-3.5 text-primary-ink" />
                   {tr(cities[c])}
-                  <span className="text-muted">· {tr(countries[cities[c].country])}</span>
+                  <span className="text-muted">· {tr(regions[cities[c].region])}</span>
                 </li>
               ))}
             </ul>

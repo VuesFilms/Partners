@@ -2,7 +2,7 @@ import { ArrowRight, Building, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import type { Investor } from '../data/investors';
-import { cities, countries, investorTypes, sectors } from '../i18n/dictionary';
+import { cities, investorTypes, regions, sectors } from '../i18n/dictionary';
 import { formatSARRange, formatUSDRange } from '../lib/currency';
 import { investorGradient, investorTypeIcon, sectorIcon } from '../lib/icons';
 import { InterestBadge, NewBadge } from './Badges';
@@ -31,7 +31,7 @@ export function InvestorCard({ inv, isNew }: { inv: Investor; isNew?: boolean })
       <p className="mt-3 flex items-center gap-2 text-sm">
         <MapPin className="h-4 w-4 shrink-0 text-muted" />
         <span className="truncate">
-          {tr(cities[inv.city])}, {tr(countries[cities[inv.city].country])}
+          {tr(cities[inv.city])}, {tr(regions[cities[inv.city].region])}
         </span>
       </p>
 

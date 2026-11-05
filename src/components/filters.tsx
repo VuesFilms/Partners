@@ -1,7 +1,7 @@
 import { ChevronDown, Search, X } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useApp } from '../context/AppContext';
-import { cities, countries, gccCountries, type CityId, type CountryId, type L } from '../i18n/dictionary';
+import { cities, cityIds, regionIds, regions, type CityId, type L, type RegionId } from '../i18n/dictionary';
 
 export function FilterSection({ title, children, aside }: { title: string; children: ReactNode; aside?: ReactNode }) {
   return (
@@ -136,14 +136,15 @@ export function RangeSlider({
   );
 }
 
-/** "" | "country:SA" | "city:riyadh" */
+/** "" | "region:western" | "city:riyadh" */
 export type LocationValue = string;
 
 export function matchesLocation(value: LocationValue, cityList: CityId[]) {
   if (!value) return true;
   const [kind, id] = value.split(':');
   if (kind === 'city') return cityList.includes(id as CityId);
-  return cityList.some((c) => cities[c].country === (id as CountryId));
+  if (kind !== 'region') return true; // ignore filters saved before the Saudi-only change
+  return cityList.some((c) => cities[c].region === (id as RegionId));
 }
 
 export function LocationSelect({ value, onChange, label }: { value: LocationValue; onChange: (v: LocationValue) => void; label: string }) {
@@ -153,13 +154,13 @@ export function LocationSelect({ value, onChange, label }: { value: LocationValu
       <span className="sr-only">{label}</span>
       <select value={value} onChange={(e) => onChange(e.target.value)} className="field appearance-none pe-10">
         <option value="">{t('allLocations')}</option>
-        {gccCountries.map((c) => (
-          <optgroup key={c} label={tr(countries[c])}>
-            <option value={`country:${c}`}>
-              {t('allCountry')} {tr(countries[c])}
+        {regionIds.map((r) => (
+          <optgroup key={r} label={tr(regions[r])}>
+            <option value={`region:${r}`}>
+              {t('allRegion')} {tr(regions[r])}
             </option>
-            {(Object.keys(cities) as CityId[])
-              .filter((id) => cities[id].country === c)
+            {cityIds
+              .filter((id) => cities[id].region === r)
               .map((id) => (
                 <option key={id} value={`city:${id}`}>
                   {tr(cities[id])}
